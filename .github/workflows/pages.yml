@@ -1,4 +1,4 @@
-name: Deploy Scientific programmingcourse site
+name: Deploy Scientific programming course site
 
 on:
   push:
@@ -9,9 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -19,29 +17,32 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out source
-        uses: actions/checkout@v4
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Verify public site output
+      - name: Prepare site files
         shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          test -f site/index.html
-          test -f site/data.json
+          git -c http.extraheader="AUTHORIZATION: bearer ${GITHUB_TOKEN}" clone --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" source
+          test -f source/site/index.html
+          test -f source/site/data.json
+          rm -rf public
+          mkdir public
+          cp -R source/site/. public/
+          touch public/.nojekyll
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish gh-pages branch
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd public
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git commit -m "Deploy site from ${GITHUB_SHA}"
+          git branch -M gh-pages
+          git -c http.extraheader="AUTHORIZATION: bearer ${GITHUB_TOKEN}" push --force "https://github.com/${GITHUB_REPOSITORY}.git" gh-pages
