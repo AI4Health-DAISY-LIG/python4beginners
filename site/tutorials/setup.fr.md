@@ -131,6 +131,11 @@ Python execute vos programmes. Utiliser la meme version majeure et mineure dans 
 1. Ouvrez la [page Python 3.12](https://www.python.org/downloads/release/python-31210/) sur python.org.
 2. Telechargez l'installateur correspondant a votre systeme.
 3. Sous Windows, cochez **Add python.exe to PATH** avant de choisir **Install Now**.
+
+![Installateur Windows Python montrant la case Add python.exe to PATH](images/win_installer.png)
+
+Cette case permet a Windows et au terminal VS Code de trouver la commande `python`. Verifiez qu'elle est cochee avant de cliquer sur **Install Now**.
+
 4. Ouvrez un nouveau terminal VS Code et verifiez l'installation :
 
 ```windows

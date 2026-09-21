@@ -131,6 +131,11 @@ Python runs your programs. Using the same major and minor version across a class
 1. Open the [Python 3.12 download page](https://www.python.org/downloads/release/python-31210/) on python.org.
 2. Download the installer for your operating system.
 3. On Windows, tick **Add python.exe to PATH** before selecting **Install Now**.
+
+![Python Windows installer showing the Add python.exe to PATH checkbox](images/win_installer.png)
+
+This checkbox allows Windows and the VS Code terminal to find the `python` command. Make sure it is checked before clicking **Install Now**.
+
 4. Open a new VS Code terminal and check the installation:
 
 ```windows
