@@ -41,7 +41,14 @@ function renderCourses(capsules) {
   const list = document.querySelector('#course-list');
   document.querySelector('#nav-course-count').textContent = String(capsules.length).padStart(2, '0');
   list.innerHTML = capsules.map((capsule, index) => `<button class="course-row${index === state.selected ? ' is-selected' : ''}" data-course-index="${index}"><span class="course-number">${String(capsule.number).padStart(2, '0')}</span><span><h3>${localized(capsule.title)}</h3><p class="course-meta">${localized(capsule.duration)} · ${localized(capsule.level)}</p></span><span class="course-arrow">→</span></button>`).join('');
-  list.querySelectorAll('[data-course-index]').forEach((row) => row.addEventListener('click', () => { state.selected = Number(row.dataset.courseIndex); renderCourses(state.capsules); if (state.selected === 0) showTab('tutorial'); }));
+  list.querySelectorAll('[data-course-index]').forEach((row) => row.addEventListener('click', () => {
+    state.selected = Number(row.dataset.courseIndex);
+    if (state.selected === 0) {
+      window.location.href = 'tutorial.html?lesson=setup';
+      return;
+    }
+    renderCourses(state.capsules);
+  }));
   if (capsules[state.selected]) renderDetail(capsules[state.selected]);
 }
 function renderLesson(capsule) {

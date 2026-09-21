@@ -43,3 +43,38 @@ button,a { font:inherit; } button { cursor:pointer; }
 .troubleshooting p { margin:5px 0 0; color:var(--muted); font-size:13px; line-height:1.5; }
 .lesson-closing { margin:45px 0 0; padding:25px; border-left:3px solid var(--purple); background:var(--lilac); color:var(--ink); line-height:1.6; }
 @media (max-width:850px) { .header-actions { gap:10px; }.lesson-panel { padding:55px 24px 75px; }.lesson-sections { grid-template-columns:1fr; }.lesson-section { min-height:0; } }
+
+.tutorial-page .site-header { position:sticky; }
+.tutorial-layout { display:grid; grid-template-columns:240px minmax(0,860px); gap:75px; max-width:1280px; margin:0 auto; padding:70px 5vw 110px; align-items:start; }
+.tutorial-index { position:sticky; top:110px; border-top:2px solid var(--ink); padding-top:18px; }
+.tutorial-index .eyebrow { margin-bottom:22px; }
+.tutorial-index nav { display:grid; gap:3px; }
+.tutorial-index-link { display:grid; grid-template-columns:30px 1fr; gap:9px; padding:12px 9px; color:var(--muted); text-decoration:none; font-size:13px; line-height:1.35; border-left:2px solid transparent; }
+.tutorial-index-link span { color:var(--purple); font-family:var(--display); font-size:11px; }
+.tutorial-index-link:hover,.tutorial-index-link.is-current { color:var(--ink); border-left-color:var(--purple); background:var(--lilac); }
+.page-index { margin-top:34px; padding-top:20px; border-top:1px solid var(--line); }
+.page-index p { margin:0 0 13px; color:var(--purple-dark); text-transform:uppercase; letter-spacing:.12em; font-size:10px; font-weight:700; }
+.page-index a { display:block; padding:5px 0; color:var(--muted); font-size:12px; line-height:1.35; text-decoration:none; }
+.page-index a:hover { color:var(--purple-dark); }
+.tutorial-article { min-width:0; }
+.tutorial-article > h1 { max-width:800px; margin:0 0 28px; font-size:clamp(48px,6vw,86px); line-height:.95; }
+.tutorial-article > p:first-of-type { max-width:700px; margin:0 0 58px; color:var(--muted); font-size:19px; line-height:1.65; }
+.tutorial-article h2 { margin:70px 0 20px; padding-top:20px; border-top:1px solid var(--line); font-size:34px; line-height:1.05; }
+.tutorial-article h3 { margin:42px 0 13px; font-size:22px; line-height:1.15; letter-spacing:-.04em; }
+.tutorial-article p,.tutorial-article li { max-width:700px; color:var(--muted); line-height:1.7; }
+.tutorial-article ol { max-width:700px; padding-left:24px; }
+.tutorial-article li { padding-left:6px; margin:9px 0; }
+.tutorial-article a { color:var(--purple-dark); font-weight:700; }
+.tutorial-article code { padding:2px 5px; color:var(--purple-dark); background:var(--lilac); font-family:monospace; font-size:.9em; }
+.tutorial-article pre { max-width:760px; overflow:auto; margin:28px 0; padding:22px 24px; color:#fdfbff; background:var(--ink); line-height:1.65; }
+.tutorial-article pre code { padding:0; color:inherit; background:transparent; font-size:13px; white-space:pre; }
+.platform-code { position:relative; max-width:760px; }
+.platform-code[hidden] { display:none; }
+.platform-controls { display:flex; justify-content:flex-end; gap:3px; min-height:30px; padding:5px 8px; background:var(--ink); }
+.platform-controls button { border:0; padding:4px 7px; color:#b8a8c4; background:transparent; font-size:11px; line-height:1; }
+.platform-controls button:hover,.platform-controls button.is-selected { color:white; background:var(--purple); }
+.platform-controls button span { margin-left:3px; }
+.platform-code pre { margin:0; border-top:1px solid rgba(255,255,255,.12); }
+.tutorial-article img { display:block; width:100%; max-width:860px; height:auto; margin:30px 0 42px; border:1px solid var(--line); box-shadow:0 14px 30px rgba(33,21,47,.1); }
+@media (max-width:850px) { .tutorial-layout { grid-template-columns:1fr; gap:35px; padding:48px 24px 75px; }.tutorial-index { position:static; }.tutorial-index nav { grid-template-columns:repeat(2,minmax(0,1fr)); }.tutorial-article > h1 { font-size:52px; }.tutorial-article h2 { margin-top:52px; } }
+@media (max-width:520px) { .tutorial-page .main-nav { gap:10px; }.tutorial-page .github-link { display:none; }.tutorial-index nav { grid-template-columns:1fr; }.tutorial-article > h1 { font-size:45px; }.tutorial-article > p:first-of-type { font-size:17px; }.tutorial-article pre { margin-left:-4px; margin-right:-4px; padding:17px; } }

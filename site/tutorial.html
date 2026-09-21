@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Scientific programming tutorials with Python.">
+  <title>Scientific Programming Tutorial</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="tutorial-page">
+  <header class="site-header">
+    <a class="wordmark" href="index.html#overview"><img src="icon.png" alt=""><span>Scientific<span>Programming</span></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html#overview" data-label="overview">Overview</a>
+      <a class="nav-link is-active" href="tutorial.html?lesson=setup" data-label="tutorials">Tutorials</a>
+      <a class="nav-link" href="index.html#about" data-label="about">About</a>
+    </nav>
+    <div class="header-actions">
+      <button class="language-toggle" id="language-toggle" type="button" aria-label="Passer en francais" title="Passer en francais"><span aria-hidden="true">◐</span><span class="language-code">FR</span></button>
+      <a class="github-link" href="https://github.com/sandrine-muller/Python4Beginners" target="_blank" rel="noreferrer">View on GitHub <span>↗</span></a>
+    </div>
+  </header>
+  <main class="tutorial-layout">
+    <aside class="tutorial-index" aria-label="Tutorial index">
+      <p class="eyebrow" data-label="index-title">Tutorial index</p>
+      <nav id="tutorial-index-list"></nav>
+      <div class="page-index" id="page-index"></div>
+    </aside>
+    <article class="tutorial-article" id="tutorial-content" aria-live="polite">
+      <p class="loading">Loading tutorial...</p>
+    </article>
+  </main>
+  <script src="tutorial.js"></script>
+</body>
+</html>
