@@ -16,12 +16,12 @@ function parseMarkdown(markdown) {
   const lines = markdown.replace(/\r/g, '').split('\n');
   const html = [];
   let paragraph = [];
-  let list = false;
+  let listType = '';
   let code = false;
   let codeLanguage = '';
   let codeLines = [];
   const flushParagraph = () => { if (paragraph.length) { html.push(`<p>${inlineMarkdown(paragraph.join(' '))}</p>`); paragraph = []; } };
-  const closeList = () => { if (list) { html.push('</ol>'); list = false; } };
+  const closeList = () => { if (listType) { html.push(`</${listType}>`); listType = ''; } };
   lines.forEach((line) => {
     if (line.startsWith('```')) {
       if (code) {
@@ -38,8 +38,16 @@ function parseMarkdown(markdown) {
     if (code) { codeLines.push(line); return; }
     const heading = line.match(/^(#{1,3})\s+(.+)$/);
     if (heading) { flushParagraph(); closeList(); const level = heading[1].length; const title = heading[2]; const id = slugify(title); html.push(`<h${level} id="${id}">${inlineMarkdown(title)}</h${level}>`); return; }
-    const item = line.match(/^\d+\.\s+(.+)$/);
-    if (item) { flushParagraph(); if (!list) { html.push('<ol>'); list = true; } html.push(`<li>${inlineMarkdown(item[1])}</li>`); return; }
+    const orderedItem = line.match(/^\d+\.\s+(.+)$/);
+    const unorderedItem = line.match(/^[-*]\s+(.+)$/);
+    if (orderedItem || unorderedItem) {
+      flushParagraph();
+      const nextListType = orderedItem ? 'ol' : 'ul';
+      if (listType && listType !== nextListType) closeList();
+      if (!listType) { html.push(`<${nextListType}>`); listType = nextListType; }
+      html.push(`<li>${inlineMarkdown((orderedItem || unorderedItem)[1])}</li>`);
+      return;
+    }
     if (!line.trim()) { flushParagraph(); closeList(); return; }
     paragraph.push(line.trim());
   });

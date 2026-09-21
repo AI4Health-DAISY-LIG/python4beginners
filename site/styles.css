@@ -62,7 +62,7 @@ button,a { font:inherit; } button { cursor:pointer; }
 .tutorial-article h2 { margin:70px 0 20px; padding-top:20px; border-top:1px solid var(--line); font-size:34px; line-height:1.05; }
 .tutorial-article h3 { margin:42px 0 13px; font-size:22px; line-height:1.15; letter-spacing:-.04em; }
 .tutorial-article p,.tutorial-article li { max-width:700px; color:var(--muted); line-height:1.7; }
-.tutorial-article ol { max-width:700px; padding-left:24px; }
+.tutorial-article ol,.tutorial-article ul { display:block; max-width:700px; padding-left:24px; }
 .tutorial-article li { padding-left:6px; margin:9px 0; }
 .tutorial-article a { color:var(--purple-dark); font-weight:700; }
 .tutorial-article code { padding:2px 5px; color:var(--purple-dark); background:var(--lilac); font-family:monospace; font-size:.9em; }
