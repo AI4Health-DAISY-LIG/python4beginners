@@ -4,5 +4,11 @@
     "number": "01",
     "title": {"en": "Set up your scientific programming workspace", "fr": "Preparer son environnement de programmation scientifique"},
     "sources": {"en": "tutorials/setup.en.md", "fr": "tutorials/setup.fr.md"}
+  },
+  {
+    "slug": "github",
+    "number": "02",
+    "title": {"en": "Use GitHub to share and improve your work", "fr": "Utiliser GitHub pour partager et ameliorer son travail"},
+    "sources": {"en": "tutorials/github.en.md", "fr": "tutorials/github.fr.md"}
   }
 ]
