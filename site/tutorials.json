@@ -10,5 +10,11 @@
     "number": "02",
     "title": {"en": "Use GitHub to share and improve your work", "fr": "Utiliser GitHub pour partager et ameliorer son travail"},
     "sources": {"en": "tutorials/github.en.md", "fr": "tutorials/github.fr.md"}
+  },
+  {
+    "slug": "start",
+    "number": "03",
+    "title": {"en": "Start your first notebook", "fr": "Commencer son premier notebook"},
+    "sources": {"en": "tutorials/start.en.md", "fr": "tutorials/start.fr.md"}
   }
 ]
