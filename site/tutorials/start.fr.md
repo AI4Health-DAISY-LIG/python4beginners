@@ -1,11 +1,5 @@
-<span style="color:purple; font-weight:bold">Scientific programming</span>
-========================================================
-M1 sciences cognitives, Université Grenoble-Alpes  
-[Benoît Lemaire](https://lpnc.univ-grenoble-alpes.fr/fr/benoit-lemaire), 2026-2027
-
-# <span style="color:blue">Avertissement</span>
 Ce document est un notebook Jupyter qui va constituer le support de cette partie introductive de l'enseignement (4h de cours/TD, 4h de TP). Il contient deux types de cellule : du texte Markdown ou du code. L'idée est que ce document devienne le vôtre : vous pouvez modifier les contenus comme vous voulez, exécuter du code (`Ctrl-Entrée`) ou ajouter de nouvelles cellules pour y inclure vos propres notes ou programmes. 
-Vous y trouverez des explications sommaires sur le langage Python et à la fin de chaque partie une séquence "<span style="color:green; font-weight:bold">*À vous de jouer*</span>" dans laquelle vous pourrez tester vos connaissances en résolvant de petits exercices. Pour les étudiants qui vont vite, une partie BONUS permet d'aller encore plus loin, en devant souvent aller chercher de l'information à l'extérieur.
+Vous y trouverez des explications sommaires sur le langage Python et à la fin de chaque partie une séquence *À vous de jouer* dans laquelle vous pourrez tester vos connaissances en résolvant de petits exercices. Pour les étudiants qui vont vite, une partie BONUS permet d'aller encore plus loin, en devant souvent aller chercher de l'information à l'extérieur.
 
 
 # Python en ligne
@@ -66,7 +60,7 @@ Essayons maintenant d'autres calculs.
 8**3
 ```
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer
 Ecrivez dans la zone ci-dessous le calcul pour obtenir le double de la somme de 44 et 55. Puis `Ctrl-Entrée`. Avez-vous trouvé 198 ?
 
 
@@ -74,7 +68,7 @@ Ecrivez dans la zone ci-dessous le calcul pour obtenir le double de la somme de 
 
 ```
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer
 Calculez la moyenne de 5, 6 et 3. Avez-vous trouvé 4.666666667 ?  
 BONUS : arrondir à deux chiffres après la virgule (indice : `round`)
 
@@ -136,7 +130,7 @@ print(a+b)
     8
     
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer
 1. Créez 2 variables, t1 et t2 contenant les valeurs 24 et 31.  
 2. Echangez le contenu des deux variables
 3. Vérifiez en affichant la valeur de t1 puis la valeur de t2
@@ -183,7 +177,7 @@ print(prenom, ", voici les consignes")
     Sandrine , voici les consignes
     
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer
 1. Demandez à l'utilisateur son année de naissance
 2. Calculez son âge en supposant qu'on est en 2026. Attention, `input` fournit une chaîne de caractères, il faudra donc la convertir en entier (`int`) pour pouvoir faire le calcul.
 3. Affichez l'âge.
@@ -231,7 +225,7 @@ print("Le groupe est",groupe)
     Le groupe est contrôle
     
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer
 Écrire un programme qui demande à l'utilisateur son âge et qui affiche la carte SNCF qui lui correspond ("pas de carte" avant 12 ans, "avantage jeune" de 12 à 27 ans, "avantage adulte" de 28 à 59 ans et "avantage senior" à partir de 60 ans.  
 Vous pouvez bien sûr placer des `if` ou `if..else` dans des `if` ou des `else`.
 Testez votre code avec quelques exemples.
@@ -262,7 +256,7 @@ Ce type d'itérations nécessite :
 2. une condition qui va contrôler le maintien dans la boucle (ici `i<10`)
 3. une instruction qui va possiblement changer la condition (ici `i=i+1`). Sans cette instruction, on bouclerait à l'infini. 
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer*
 Écrire de 2 façons différentes un programme qui affiche les nombres pairs entre 8 et 16 inclus.  
 En ajoutant 2 à la variable `i` à chaque passage dans la boucle :
 
@@ -315,7 +309,7 @@ for i in range(5):
     print(i)
 ```
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer*
 Écrire un programme pour afficher les 10 premières puissances de 2 : 1, 2, 4, 8, ... Pour cela, itérez `i` de 0 à 9 et afficher $2^i$. En Python, l'opérateur puissance s'écrit `**`.
 
 BONUS : Affichez en plus les opérations comme ceci :
@@ -410,7 +404,7 @@ On peut aussi utiliser l'opérateur `not in`:
 'z' not in "cognition"
 ```
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer*
 Ecrire un programme pour compter et afficher le nombre de voyelles dans une chaîne de caractères saisie par l'utilisateur. Vous devez donc parcourir la chaîne et, pour chaque lettre, déterminer si elle appartient à l'ensemble des voyelles (`"aeiouyAEIOUY"`). 
 
 
@@ -485,7 +479,7 @@ for numeros in telephone.values():
     print(numeros)
 ```
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer*
 **Exercice 1**. Compléter le code ci-dessous pour :
 1. Afficher le nom du participant
 2. Modifier l'âge du participant qui est maintenant 25
@@ -568,7 +562,7 @@ Quelles sont les variables en entrée et les variables en sortie pour les foncti
 - déterminer le nombre de valeurs négatives d'une liste
 - ajouter 1 à chaque élément d'une liste
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer*
 Écrire une fonction qui prend en entrée 2 entiers et qui renvoie leur écart. Par exemple, avec 3 et 5 ou 5 et 3, cette fonction renverra 2. Ne pas utiliser la fonction prédéfinie `abs`.
 
 
@@ -613,7 +607,7 @@ Il existe de nombreuses fonctions prédéfinies en Python. Si vous les connaisse
 Le nombre de valeurs en entrée (aussi appelés paramètres) est variable. On peut même n'avoir aucun paramètre et donc il n'y aura pas de `return` dans une telle fonction. On a également la possibilité de définir des paramètres par défaut ou de changer l'ordre des paramètres, mais on verra cela plus tard.  
 Attention à ne pas confondre `return` et `print`, ce qui est une erreur classique des débutants. Une fonction renvoie un résultat mais elle ne préjuge pas de ce qui va être fait de ce résultat par le code qui appelle la fonction. Dans l'exemple `moyenne` ci-dessus, ce n'est pas la fonction `moyenne` qui affiche le résultat à l'écran, mais le code qui *appelle* la fonction. Dit autrement, ce n'est pas au programmeur de la fonction de décider de ce qui va être fait du résultat (affichage, autre calcul, etc.), son rôle est juste de déterminer le résultat et de le donner à celui qui le lui a demandé.
 
-### <span style="color:green; font-weight:bold">*À vous de jouer*</span>
+### À vous de jouer*
 Soit une liste contenant des temps de réaction de participants à une expérience. Ecrire une fonction qui renvoie une liste qui contient uniquement les valeurs comprises entre une borne mininum et une borne maximum. Voici le code à compléter (l'instruction `pass` est à remplacer, c'est une instruction qui ne fait rien mais qui est nécessaire puisque Python exige au moins une instruction dans une fonction).  
 BONUS : même chose avec la fonction cleanSD qui supprime les valeurs qui s'écartent de plus de 2 écart-types de la moyenne des valeurs.
 

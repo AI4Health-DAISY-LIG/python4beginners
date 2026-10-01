@@ -1,11 +1,5 @@
-<span style="color:purple; font-weight:bold">Scientific programming</span>
-========================================================
-M1 Cognitive Sciences, Université Grenoble-Alpes  
-[Benoît Lemaire](https://lpnc.univ-grenoble-alpes.fr/fr/benoit-lemaire), 2026-2027
-
-# <span style="color:blue">Warning</span>
 This document is a Jupyter notebook that will serve as the basis for this introductory part of the course (4h lecture/TD, 4h practical work). It contains two types of cells: Markdown text or code. The idea is for this document to become yours: you can modify the content however you like, execute code (`Ctrl-Enter`), or add new cells to include your own notes or programs.
-You will find brief explanations about the Python language and at the end of each section a sequence "<span style="color:green; font-weight:bold">*Your Turn*</span>" where you can test your knowledge by solving small exercises. For students who are fast, a BONUS part allows you to go even further, often requiring you to look for information outside.
+You will find brief explanations about the Python language and at the end of each section a sequence "*Your Turn*" where you can test your knowledge by solving small exercises. For students who are fast, a BONUS part allows you to go even further, often requiring you to look for information outside.
 
 
 # Online Python
@@ -53,7 +47,7 @@ Let's try other calculations.
 8**3
 ```
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 Write in the box below the calculation to get double the sum of 44 and 55. Then press `Ctrl-Enter`. Did you find 198?
 
 
@@ -61,7 +55,7 @@ Write in the box below the calculation to get double the sum of 44 and 55. Then 
 # Expected output: 198
 ```
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 Calculate the average of 5, 6, and 3. Did you find 4.666666667?  
 BONUS: round to two decimal places (hint: `round`)
 
@@ -119,7 +113,7 @@ print(a+b)
     8
     
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 1. Create 2 variables, t1 and t2, containing the values 24 and 31.  
 2. Swap the content of the two variables
 3. Verify by printing the value of t1 then the value of t2
@@ -168,7 +162,7 @@ print(prenom, ", here are the instructions")
     Sandrine , here are the instructions
     
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 1. Ask the user for their year of birth
 2. Calculate their age assuming we are in 2026. Remember, `input` provides a string, so you will need to convert it to an integer (`int`) to perform the calculation.
 3. Display the age.
@@ -218,7 +212,7 @@ print("The group is", groupe)
     The group is control
     
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 Write a program that asks the user for their age and displays the SNCF card corresponding to them ("no card" before 12 years old, "young advantage" from 12 to 27 years old, "adult advantage" from 28 to 59 years old, and "senior advantage" from 60 years old onwards.  
 You can certainly place `if` or `if..else` inside `if` or `else`.
 Test your code with a few examples.
@@ -252,7 +246,7 @@ This type of iteration requires:
 2. A condition that controls the maintenance in the loop (here `i<10`)
 3. An instruction that might change the condition (here `i=i+1`). Without this instruction, it would loop infinitely. 
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 Write a program in two different ways to display the even numbers between 8 and 16 inclusive.  
 By adding 2 to the variable `i` at each step in the loop:
 
@@ -313,7 +307,7 @@ for i in range(5):
     print(i)
 ```
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 Write a program to display the first 10 powers of 2: 1, 2, 4, 8, ... To do this, iterate `i` from 0 to 9 and display $2^i$. In Python, the power operator is written as `**`.
 
 BONUS: Also display the operations like this:
@@ -410,7 +404,7 @@ We can also use the operator `not in`:
 'z' not in "cognition"
 ```
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 Write a program to count and display the number of vowels in a string entered by the user. You must therefore iterate through the string and, for each letter, determine if it belongs to the set of vowels (`"aeiouyAEIOUY"`). 
 
 
@@ -489,7 +483,7 @@ for numeros in telephone.values():
     print(numeros)
 ```
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 **Exercise 1**. Complete the code below to:
 1. Display the participant's name
 2. Modify the participant's age to 25
@@ -582,7 +576,7 @@ What are the input variables and output variables for the following functions :
 - determine the number of negative values in a list
 - add 1 to each element in a list
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 Write a function that takes two integers as input and returns their difference. For example, with 3 and 5 or 5 and 3, this function will return 2. Do not use the predefined `abs` function.
 
 
@@ -625,7 +619,7 @@ There are many predefined functions in Python. If you know them, you can use the
 The number of input values (also called parameters) is variable. We can even have no parameters in such a function and thus there will be no `return` in such a function. We also have the possibility to define default parameters or change the order of parameters, but we will see that later.  
 Be careful not to confuse `return` and `print`, which is a classic beginner mistake. A function returns a result but it does not predict what will be done with this result by the code calling the function. In the above `average` example, it's not the `average` function that displays the result on the screen, but the code that *calls* the function. In other words, it is not up to the programmer of the function to decide what will be done with the result (display, another calculation, etc.), its role is just to determine the result and give it to whoever asked for it.
 
-### <span style="color:green; font-weight:bold">*Your Turn*</span>
+### *Your Turn*
 Suppose we have a list containing reaction times of participants in an experiment. Write a function that returns a list containing only values between a minimum bound and a maximum bound. Here is the code to complete (the `pass` instruction must be replaced, it's an instruction that does nothing but is necessary since Python requires at least one instruction in a function).  
 BONUS: same thing with the `cleanSD` function which removes values that deviate by more than 2 standard deviations from the average of the values.
 
