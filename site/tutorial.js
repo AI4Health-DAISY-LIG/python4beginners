@@ -10,7 +10,7 @@ const copy = {
 };
 const text = (key) => copy[state.language][key];
 const escapeHtml = (value) => value.replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
-const inlineMarkdown = (value) => escapeHtml(value).replace(/!\[([^\]]*)\]\(([^\s)]+)\)/g, '<img src="$2" alt="$1">').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1 ↗</a>').replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+const inlineMarkdown = (value) => escapeHtml(value).replace(/!\[([^\]]*)\]\(([^\s)]+)\)/g, '<img src="$2" alt="$1">').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1 ↗</a>').replace(/`([^`]+)`/g, '<code >$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong >$1</strong>');
 function slugify(value) { return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
 function parseMarkdown(markdown) {
   const lines = markdown.replace(/\r/g, '').split('\n');
@@ -27,7 +27,7 @@ function parseMarkdown(markdown) {
       if (code) {
         const source = escapeHtml(codeLines.join('\n'));
         if (['windows', 'mac', 'linux'].includes(codeLanguage)) {
-          html.push(`<div class="platform-code" data-platform="${codeLanguage}"><div class="platform-controls" role="group" aria-label="Choose your operating system"><button type="button" data-platform-choice="windows" title="Windows">⊞ <span>Windows</span></button><button type="button" data-platform-choice="mac" title="macOS">⌘ <span>macOS</span></button><button type="button" data-platform-choice="linux" title="Linux">◈ <span>Linux</span></button></div><pre><code class="language-${codeLanguage}">${source}</code></pre></div>`);
+          html.push(`<div class="platform-code" data-platform="${codeLanguage}"><div class="platform-controls" role="group" aria-label="Choose your operating system"><button type="button" data-platform-choice="windows" title="Windows">⊞ <span>Windows</span></button><button type="button" data-platform-choice="mac" title="macOS">⌘ <span>macOS</span></button><button type="button" data-platform-choice="linux" title="Linux">◈ <span>Linux</span></button></div><pre><code class="language-${codeLanguage}">${source}</code></pre></div`);
         } else {
           html.push(`<pre><code class="language-${codeLanguage}">${source}</code></pre>`);
         }
@@ -60,7 +60,12 @@ function renderIndex() {
   document.querySelector('[data-label="about"]').textContent = text('about');
   document.querySelector('[data-label="index-title"]').textContent = text('indexTitle');
   const index = document.querySelector('#tutorial-index-list');
-  index.innerHTML = state.tutorials.map((tutorial) => `<a class="tutorial-index-link${tutorial.slug === state.lesson ? ' is-current' : ''}" href="tutorial.html?lesson=${tutorial.slug}"><span>${tutorial.number}</span>${tutorial.title[state.language]}</a>`).join('');
+  index.innerHTML = state.tutorials.map((tutorial) => `
+    <a class="tutorial-index-link ${tutorial.slug === state.lesson ? ' is-current' : ''}" href="tutorial.html?lesson=${tutorial.slug}">
+      <span class="number">${tutorial.number}</span>
+      <div class="title">${text(tutorial.title[state.language])}</div>
+      <div class="author">by ${tutorial.author}</div>
+    </a>`).join('');
   const languageButton = document.querySelector('#language-toggle');
   languageButton.setAttribute('aria-label', text('language'));
   languageButton.title = text('language');
