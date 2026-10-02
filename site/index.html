@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="language-en">
   <header class="site-header">
     <a class="wordmark" href="#overview">
       <img src="icon.png" alt="">
@@ -23,6 +23,7 @@
         <span data-label="courses">Capsules</span>
         <span id="nav-course-count">01</span>
       </button>
+      <button class="nav-link" data-tab="practical_sessions" data-label="practical-sessions">Sessions pratiques</button>
       <button class="nav-link" data-tab="about" data-label="about">About</button>
     </nav>
     <div class="header-actions">
@@ -31,7 +32,7 @@
         <span class="language-code">FR</span>
       </button>
       <a class="github-link" data-label="github" href="https://github.com/AI4Health-DAISY-LIG/python4beginners" target="_blank" rel="noreferrer">
-        View on GitHub <span>↗</span>
+        View on GitHub <span aria-hidden="true">↗</span>
       </a>
     </div>
   </header>
@@ -40,18 +41,18 @@
     <section class="hero tab-panel is-visible" data-panel="overview" id="overview">
       <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-dot"></span> M1 Scientific programming with Python</p>
-        <h1>Python for<br><em>scientific thinking.</em></h1>
+        <h1 class="title">Python for<br><em class="subtitle">scientific thinking.</em></h1>
         <p class="hero-lede">Learn to turn questions, measurements, and observations into clear, reproducible analysis.</p>
         <div class="hero-actions">
-          <button class="button button-dark" data-tab="courses" data-label="explore">Explore the capsules <span>↓</span></button>
-          <a class="text-link" data-label="reference" href="https://docs.python.org/3/tutorial/" target="_blank" rel="noreferrer">Open Python documentation <span>↗</span></a>
+          <button class="button button-dark" data-tab="courses" data-label="explore">Explore the capsules <span aria-hidden="true">↓</span></button>
+          <a class="text-link" data-label="reference" href="https://docs.python.org/3/tutorial/" target="_blank" rel="noreferrer">Open Python documentation <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <div class="hero-visual" aria-label="A visual path from Python code to structured data and a scientific plot">
         <div class="visual-label label-top">01 / code</div>
         <div class="visual-label label-bottom">03 / insight</div>
         <div class="code-diagram">
-          <span>&gt;&gt;&gt; data</span>
+          <span>&gt;&gt; data</span>
           <span>mean = 4.2</span>
           <span>plot(x, y)</span>
         </div>
@@ -60,7 +61,7 @@
           <i></i><i></i><i></i><i></i>
           <b></b><b></b><b></b><b></b>
         </div>
-        <div class="visual-caption">question <span>→</span> data <span>→</span> evidence</div>
+        <div class="visual-caption">question <span aria-hidden="true">→</span> data <span aria-hidden="true">→</span> evidence</div>
       </div>
       <div class="hero-footer">
         <span>Designed for curious engineers, scientists &amp; clinicians</span>
@@ -70,9 +71,9 @@
 
     <section class="content-section tab-panel" data-panel="courses" id="courses">
       <div class="section-heading">
-        <div>
+        <div class="text-block">
           <p class="eyebrow" data-label="curriculum">The curriculum</p>
-          <h2>Small steps.<br><em>Scientific habits.</em></h2>
+          <h2 class="title">Small steps.<br><em class="subtitle">Scientific habits.</em></h2>
         </div>
         <p class="section-intro" data-label="course-intro">Short, focused resources to help you become confident with Python for scientific work.</p>
       </div>
@@ -82,7 +83,7 @@
         </div>
         <aside class="course-detail" id="course-detail">
           <p class="detail-kicker">Select a capsule</p>
-          <h3>Start at the beginning.</h3>
+          <h3 class="title">Start at the beginning.</h3>
           <p>Choose a capsule to see its learning outcomes and next steps.</p>
         </aside>
       </div>
@@ -98,7 +99,7 @@
     <section class="content-section about-section tab-panel" data-panel="about" id="about">
       <div class="about-statement">
         <p class="eyebrow" data-label="about-eyebrow">About the instructors</p>
-        <h2 data-label="about-title">Teaching the path from <em>health data</em> to intelligence.</h2>
+        <h2 data-label="about-title">Teaching the path from <em class="subtitle">health data</em> to intelligence.</h2>
       </div>
       <div class="about-copy">
         <img class="portrait" src="images/SandrineMuller-PhD-UGA.jpg" alt="Portrait of Sandrine Muller">
@@ -111,13 +112,28 @@
       </div>
       <div class="about-copy">
         <img class="portrait" src="images/BenoitLamaire.jpg" alt="Portrait of Benoît Lemaire">
-        <p><strong>Benoît Lemaire, MCU, UGA</strong>  is a Asst. Professor at the University of Grenoble Alpes in informatics and cognitive science.</p>
+        <p><strong>Benoît Lemaire, MCU, UGA</strong> is a Asst. Professor at the University of Grenoble Alpes in informatics and cognitive science.</p>
         <p data-label="about-text">His research focuses on the intersection of informatics and cognitive science to better understand how the human brain works.</p>
         <div class="profile-links">
           <a href="https://lpnc.univ-grenoble-alpes.fr/fr/benoit-lemaire" target="_blank" rel="noreferrer">Full biography ↗</a>
         </div>
       </div>
     </section>
+
+    <section class="content-section practical-sessions-section tab-panel" data-panel="practical_sessions" id="practical-sessions">
+      <div class="section-heading">
+        <div class="text-block">
+          <p class="eyebrow" data-label="practical-eyebrow">Sessions pratiques</p>
+          <h2 class="title" data-label="practical-title">Mettre en pratique les concepts.</h2>
+        </div>
+      </div>
+      <div class="practical-sessions-layout">
+        <aside id="practical-sessions-index" class="course-detail">
+          <p class="loading" data-label="practical-loading">Loading practical sessions...</p>
+        </aside>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
