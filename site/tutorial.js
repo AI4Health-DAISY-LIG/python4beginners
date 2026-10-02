@@ -1,19 +1,34 @@
 const state = {
   language: localStorage.getItem('site-language') || 'en',
   lesson: new URLSearchParams(window.location.search).get('lesson') || 'setup',
+  collection: new URLSearchParams(window.location.search).get('collection') === 'practical_sessions' ? 'practical_sessions' : 'tutorials',
   platform: localStorage.getItem('site-platform') || 'windows',
   tutorials: []
 };
 const copy = {
-  en: { overview: 'Overview', tutorials: 'Tutorials', about: 'About', indexTitle: 'Tutorial index', loading: 'Loading tutorial...', missing: 'This tutorial is not available yet.', language: 'Passer en francais', github: 'View on GitHub' },
-  fr: { overview: 'Accueil', tutorials: 'Tutoriels', about: 'A propos', indexTitle: 'Index des tutoriels', loading: 'Chargement du tutoriel...', missing: "Ce tutoriel n'est pas encore disponible.", language: 'Switch to English', github: 'Voir sur GitHub' }
+  en: { overview: 'Overview', tutorials: 'Tutorials', practicalSessions: 'Practical sessions', about: 'About', indexTitle: 'Tutorial index', practicalIndexTitle: 'Practical sessions', loading: 'Loading tutorial...', missing: 'This tutorial is not available yet.', language: 'Passer en francais', github: 'View on GitHub' },
+  fr: { overview: 'Accueil', tutorials: 'Tutoriels', practicalSessions: 'Sessions pratiques', about: 'A propos', indexTitle: 'Index des tutoriels', practicalIndexTitle: 'Sessions pratiques', loading: 'Chargement du tutoriel...', missing: "Ce tutoriel n'est pas encore disponible.", language: 'Switch to English', github: 'Voir sur GitHub' }
 };
 const text = (key) => copy[state.language][key];
 const escapeHtml = (value) => value.replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
-const inlineMarkdown = (value) => escapeHtml(value).replace(/!\[([^\]]*)\]\(([^\s)]+)\)/g, '<img src="$2" alt="$1">').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1 ↗</a>').replace(/`([^`]+)`/g, '<code >$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong >$1</strong>');
+const inlineMarkdown = (value) => {
+  const codeSpans = [];
+  let html = escapeHtml(value).replace(/`([^`]+)`/g, (_, code) => {
+    codeSpans.push(`<code>${code}</code>`);
+    return `\u0000CODE${codeSpans.length - 1}\u0000`;
+  });
+  html = html
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^\w])_([^_\n]+)_(?!\w)/g, '$1<em>$2</em>')
+    .replace(/(^|[^\w*])\*([^*\n]+)\*(?!\w|\*)/g, '$1<em>$2</em>')
+    .replace(/!\[([^\]]*)\]\(([^\s)]+)\)/g, '<img src="$2" alt="$1">')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1 ↗</a>')
+    .replace(/\u0000CODE(\d+)\u0000/g, (_, index) => codeSpans[Number(index)]);
+  return html;
+};
 function slugify(value) { return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
 function parseMarkdown(markdown) {
-  const lines = markdown.replace(/\r/g, '').split('\n');
+  const lines = markdown.replace(/^(?:<!-- local-code-markup-v\d+ -->\r?\n)+/, '').replace(/\r/g, '').split('\n');
   const html = [];
   let paragraph = [];
   let listType = '';
@@ -56,15 +71,17 @@ function parseMarkdown(markdown) {
 }
 function renderIndex() {
   document.querySelector('[data-label="overview"]').textContent = text('overview');
-  document.querySelector('[data-label="tutorials"]').textContent = text('tutorials');
+  const collectionLink = document.querySelector('[data-label="tutorials"]');
+  collectionLink.textContent = state.collection === 'tutorials' ? text('tutorials') : text('practicalSessions');
+  collectionLink.href = state.collection === 'tutorials' ? 'tutorial.html?collection=tutorials&lesson=setup' : 'index.html#practical_sessions';
   document.querySelector('[data-label="about"]').textContent = text('about');
-  document.querySelector('[data-label="index-title"]').textContent = text('indexTitle');
+  document.querySelector('[data-label="index-title"]').textContent = state.collection === 'tutorials' ? text('indexTitle') : text('practicalIndexTitle');
   const index = document.querySelector('#tutorial-index-list');
   index.innerHTML = state.tutorials.map((tutorial) => `
-    <a class="tutorial-index-link ${tutorial.slug === state.lesson ? ' is-current' : ''}" href="tutorial.html?lesson=${tutorial.slug}">
-      <span class="number">${tutorial.number}</span>
-      <div class="title">${text(tutorial.title[state.language])}</div>
-      <div class="author">by ${tutorial.author}</div>
+    <a class="tutorial-index-link ${tutorial.slug === state.lesson ? ' is-current' : ''}" href="tutorial.html?collection=${state.collection}&lesson=${encodeURIComponent(tutorial.slug)}">
+      <span class="number">${escapeHtml(tutorial.number)}</span>
+      <div class="title">${escapeHtml(tutorial.title[state.language] || tutorial.title.en || tutorial.slug)}</div>
+      <div class="author">by ${escapeHtml(Array.isArray(tutorial.author) ? tutorial.author.join(', ') : tutorial.author)}</div>
     </a>`).join('');
   const languageButton = document.querySelector('#language-toggle');
   languageButton.setAttribute('aria-label', text('language'));
@@ -93,12 +110,16 @@ function setPlatform(platform) {
 }
 async function loadTutorial() {
   try {
-    const response = await fetch('tutorials.json');
+    const response = await fetch(`${state.collection}/${state.collection}.json`);
+    if (!response.ok) throw new Error('Collection manifest unavailable');
     state.tutorials = await response.json();
     renderIndex();
     const current = state.tutorials.find((tutorial) => tutorial.slug === state.lesson) || state.tutorials[0];
     state.lesson = current.slug;
-    const markdown = await fetch(current.sources[state.language]).then((result) => result.text());
+    const source = current.sources[state.language] || current.sources.en;
+    const markdownResponse = await fetch(`${state.collection}/${source}`);
+    if (!markdownResponse.ok) throw new Error('Markdown source unavailable');
+    const markdown = await markdownResponse.text();
     renderArticle(markdown);
   } catch (error) {
     document.querySelector('#tutorial-content').innerHTML = `<p>${text('missing')}</p>`;
