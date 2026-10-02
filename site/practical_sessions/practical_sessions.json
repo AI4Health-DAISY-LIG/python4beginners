@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "modal-model",
+    "number": "01",
+    "title": {"en": "TP Python: the modal model", "fr": "TP Python : le modèle modal"},
+    "sources": {
+      "en": "short-term_long-term_memory_model.md",
+      "fr": "short-term_long-term_memory_model.md"
+    },
+    "author": ["Benoit Lemaire"]
+  }
+]
